@@ -1,2 +1,3 @@
 # STI GAME DEVELOPMENT
  A game dev project for midterms. The group has chosen the third proposed game, a farm game...
+Group members: Catherine Abella, Denzell Buco, Thomas Balon, Dave Solayao, Louie Talibsao, Karl Torio
