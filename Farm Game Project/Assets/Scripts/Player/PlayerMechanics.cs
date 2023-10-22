@@ -10,7 +10,7 @@ public class PlayerMechanics : MonoBehaviour
     private int _pisoPerSecond = 5;
     private const float _GENERATE_PISO_PER_SECOND = 1f;
     private float _generationTime;
-    private const int _MAX_PISO_GENERATION = 500;
+    private const int _MAX_PISO_GENERATION = 250;
 
     private int _selectedCropPrice = 0;
     public int SetSelectedCropPrice { set { _selectedCropPrice = value; } }
@@ -27,7 +27,7 @@ public class PlayerMechanics : MonoBehaviour
     public delegate void Delegate_1();
     public Delegate_1 OnPlantSeeds;
 
-    [HideInInspector] public FarmPlot farmPlot;
+    public FarmPlot farmPlot;
     private CharacterController2D _controller2D;
     private GameManager _gameManager;
 
@@ -93,7 +93,7 @@ public class PlayerMechanics : MonoBehaviour
         if (_piso >= _selectedCropPrice)
         {
             _piso -= _selectedCropPrice;
-            farmPlot.PlantSeeds();
+            if (farmPlot) farmPlot.PlantSeeds();
         }
     }
 }

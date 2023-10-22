@@ -156,5 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2004dafc00b60524ea838a83a4e99186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _farmCrops: {fileID: 11400000, guid: 58b68812e4000e546b8b6e66b0f4a364, type: 2}
-  seed: {fileID: 0}
+  _farmCrops: {fileID: 0}
+  _growthTime: 0

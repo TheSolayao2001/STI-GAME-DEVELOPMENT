@@ -40,10 +40,12 @@ public class FarmPlotInteraction : MonoBehaviour
                 break;
 
             case PlayerMechanics.State.Plant:
-                _button.interactable = true;
-
-                if (_cropSelectionManager.hasStartSelecting)
+                if (!_cropSelectionManager.hasStartSelecting) _button.interactable = false;
+                else
+                {
+                    _button.interactable = true;
                     _cropImage.sprite = _cropSelectionManager.GetSelectedFarmCrop.GetComponent<FarmCropSelection>().GetCropImage.sprite;
+                }
 
                 _interactionText.text = "Plant";
                 break;

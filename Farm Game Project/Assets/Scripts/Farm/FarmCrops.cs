@@ -25,7 +25,21 @@ public class FarmCrops : ScriptableObject
         public float GetGrowthTime { get { return _growthTime; } }
     }
 
-    public Rice rice;
+    [Serializable]
+    public struct Corn : ICrops
+    {
+        [SerializeField] private GameObject _seed;
+        [SerializeField] private GameObject _crop;
+        [SerializeField] private float _growthTime;
 
-    public ICrops crops;
+        public GameObject GetSeed { get { return _seed; } }
+        public GameObject GetCrop { get { return _crop; } }
+        public float GetGrowthTime { get { return _growthTime; } }
+    }
+
+    public Rice rice;
+    public Corn corn;
+
+    public ICrops selectedFarmCrop;
+
 }

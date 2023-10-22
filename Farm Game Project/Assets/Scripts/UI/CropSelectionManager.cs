@@ -26,7 +26,7 @@ public class CropSelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckCropName();
     }
 
     public void SetSelectedFarmCrop(GameObject farmCrop)
@@ -41,6 +41,29 @@ public class CropSelectionManager : MonoBehaviour
         else
         {
             _deselectedFarmCrop = _selectedFarmCrop;
+        }
+    }
+
+    private void CheckCropName()
+    {
+        if (!_selectedFarmCrop) return;
+        if (!_player.farmPlot) return;
+
+        switch (_selectedFarmCrop.name)
+        {
+            case "Button - Rice":
+                if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot) 
+                    _player.farmPlot.GetFarmCrops.selectedFarmCrop = _player.farmPlot.GetFarmCrops.rice;
+                break;
+
+            case "Button - Corn":
+                if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot)
+                    _player.farmPlot.GetFarmCrops.selectedFarmCrop = _player.farmPlot.GetFarmCrops.corn;
+                break;
+
+            default:
+                Debug.LogError("OH MAY GOT!");
+                break;
         }
     }
 }
