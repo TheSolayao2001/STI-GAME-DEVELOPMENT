@@ -13,8 +13,8 @@ public class FarmPlot : MonoBehaviour
     private State _growthState;
     public State GetGrowthState { get { return _growthState; } }
 
-    [SerializeField] private FarmCrops _farmCrops;
-    public FarmCrops GetFarmCrops { get { return _farmCrops; } }
+    [SerializeField] private FarmCropTable _cropTable;
+    public FarmCropTable GetCropTable { get { return _cropTable; } }
 
     [SerializeField] private float _growthTime;
     private GameObject _plantedSeeds;
@@ -51,7 +51,7 @@ public class FarmPlot : MonoBehaviour
             case State.Seeded:
                 if (!_hasPlantedSeeds)
                 {
-                    _plantedSeeds = Instantiate(_farmCrops.selectedFarmCrop.GetSeed, transform);
+                    _plantedSeeds = Instantiate(_cropTable.selectedFarmCrop.GetSeed, transform);
                     _hasPlantedSeeds = true;
                 }
 
@@ -67,7 +67,7 @@ public class FarmPlot : MonoBehaviour
             case State.FullGrown:
                 if (!_isHarvestCrop)
                 {
-                    _harvestCrop = Instantiate(_farmCrops.selectedFarmCrop.GetCrop, transform);
+                    _harvestCrop = Instantiate(_cropTable.selectedFarmCrop.GetCrop, transform);
                     _isHarvestCrop = true;
                 }
                 break;
@@ -76,7 +76,7 @@ public class FarmPlot : MonoBehaviour
 
     public void PlantSeeds()
     {
-        _growthTime = _farmCrops.selectedFarmCrop.GetGrowthTime;
+        _growthTime = _cropTable.selectedFarmCrop.GetGrowthTime;
         _growthState = State.Seeded;
     }
 

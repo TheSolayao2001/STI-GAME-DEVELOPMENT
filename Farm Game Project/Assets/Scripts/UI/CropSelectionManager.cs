@@ -53,12 +53,27 @@ public class CropSelectionManager : MonoBehaviour
         {
             case "Button - Rice":
                 if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot) 
-                    _player.farmPlot.GetFarmCrops.selectedFarmCrop = _player.farmPlot.GetFarmCrops.rice;
+                    _player.farmPlot.GetCropTable.selectedFarmCrop = _player.farmPlot.GetCropTable.rice;
                 break;
 
             case "Button - Corn":
                 if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot)
-                    _player.farmPlot.GetFarmCrops.selectedFarmCrop = _player.farmPlot.GetFarmCrops.corn;
+                    _player.farmPlot.GetCropTable.selectedFarmCrop = _player.farmPlot.GetCropTable.corn;
+                break;
+
+            case "Button - Carrot":
+                if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot)
+                    _player.farmPlot.GetCropTable.selectedFarmCrop = _player.farmPlot.GetCropTable.carrot;
+                break;
+
+            case "Button - Calabaza":
+                if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot)
+                    _player.farmPlot.GetCropTable.selectedFarmCrop = _player.farmPlot.GetCropTable.calabaza;
+                break;
+
+            case "Button - Cake":
+                if (_player.farmPlot.GetGrowthState == FarmPlot.State.Plot)
+                    _player.farmPlot.GetCropTable.selectedFarmCrop = _player.farmPlot.GetCropTable.cake;
                 break;
 
             default:

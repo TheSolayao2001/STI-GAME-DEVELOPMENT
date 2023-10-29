@@ -20,3 +20,15 @@ MonoBehaviour:
     _seed: {fileID: 5384921150687346205, guid: 4f507bf4dfbb66442827b0b1a375ac58, type: 3}
     _crop: {fileID: 5075941163302393980, guid: 09d8d460f4e93f84096447d71f2196b0, type: 3}
     _growthTime: 7
+  carrot:
+    _seed: {fileID: 3107758071200524746, guid: 2dae0501a4fc5ca44be1294232d2ddff, type: 3}
+    _crop: {fileID: 6262568324941234760, guid: f31b2af192d07e9439b61ae222dbcedd, type: 3}
+    _growthTime: 8
+  calabaza:
+    _seed: {fileID: 3297561527233028969, guid: 8b3e5fca5d906854d8b65b9286710eda, type: 3}
+    _crop: {fileID: 3370813751459556884, guid: 46a548f57ed2926448c9c50800bfd4c0, type: 3}
+    _growthTime: 10
+  cake:
+    _seed: {fileID: 5084268477331724258, guid: fe19b734ff41b234f95114cd695044a2, type: 3}
+    _crop: {fileID: 3830819107564869732, guid: 9863428b5024fee46a30ae6184fd10ea, type: 3}
+    _growthTime: 10
