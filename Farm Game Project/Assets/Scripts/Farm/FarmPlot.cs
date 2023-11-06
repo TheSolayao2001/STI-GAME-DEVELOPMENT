@@ -19,8 +19,8 @@ public class FarmPlot : MonoBehaviour
     [SerializeField] private float _growthTime;
     private GameObject _plantedSeeds;
     private bool _hasPlantedSeeds = false;
-    private GameObject _harvestCrop;
-    private bool _isHarvestCrop = false;
+    private GameObject _fullGrownCrop;
+    private bool _isFullGrown = false;
 
     private PlayerMechanics _player;
 
@@ -46,6 +46,11 @@ public class FarmPlot : MonoBehaviour
         switch (_growthState)
         {
             case State.Plot:
+                if (_fullGrownCrop)
+                {
+                    Destroy(_fullGrownCrop);
+                    _isFullGrown = false;
+                }
                 break;
 
             case State.Seeded:
@@ -65,10 +70,10 @@ public class FarmPlot : MonoBehaviour
                 break;
 
             case State.FullGrown:
-                if (!_isHarvestCrop)
+                if (!_isFullGrown)
                 {
-                    _harvestCrop = Instantiate(_cropTable.selectedFarmCrop.GetCrop, transform);
-                    _isHarvestCrop = true;
+                    _fullGrownCrop = Instantiate(_cropTable.selectedFarmCrop.GetCrop, transform);
+                    _isFullGrown = true;
                 }
                 break;
         }
@@ -78,6 +83,11 @@ public class FarmPlot : MonoBehaviour
     {
         _growthTime = _cropTable.selectedFarmCrop.GetGrowthTime;
         _growthState = State.Seeded;
+    }
+
+    public void HarvestCrop()
+    {
+        _growthState = State.Plot;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

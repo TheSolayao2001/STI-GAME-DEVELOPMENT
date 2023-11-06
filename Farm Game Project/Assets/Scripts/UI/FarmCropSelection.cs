@@ -12,6 +12,7 @@ public class FarmCropSelection : MonoBehaviour
     private Vector2 _selectionSize;
     private Vector2 _deselectionSize;
 
+    private Button _button;
     private Image _cropImage;
     public Image GetCropImage { get { return _cropImage; } }
     private TextMeshProUGUI _TMPCost;
@@ -22,6 +23,7 @@ public class FarmCropSelection : MonoBehaviour
 
     void Awake()
     {
+        _button = GetComponent<Button>();
         _cropImage = transform.GetChild(0).GetComponent<Image>();
         _TMPCost = GetComponentInChildren<TextMeshProUGUI>();
         _cropSelectionManager = GetComponentInParent<CropSelectionManager>();
@@ -40,7 +42,8 @@ public class FarmCropSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_player.GetInteractionState == PlayerMechanics.State.OnHand) _button.interactable = false;
+        else _button.interactable = true;
     }
 
     public void SelectCrop()

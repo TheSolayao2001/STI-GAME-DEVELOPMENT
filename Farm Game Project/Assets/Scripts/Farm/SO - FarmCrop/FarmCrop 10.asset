@@ -13,22 +13,32 @@ MonoBehaviour:
   m_Name: FarmCrop 10
   m_EditorClassIdentifier: 
   rice:
+    _cropName: Rice
+    _cropSprite: {fileID: 21300000, guid: 88f3a2eeba1ff1c41823698f0f79f5f6, type: 3}
     _seed: {fileID: 3643338679843108333, guid: a6b20cf3d1dda1f49a70b77de0b465dd, type: 3}
     _crop: {fileID: 3844746215477624608, guid: 935ff15277dd3154a941d4101d31c307, type: 3}
     _growthTime: 5
   corn:
+    _cropName: Corn
+    _cropSprite: {fileID: 21300000, guid: 6cce62d6461f04940b3d32ff375cb79f, type: 3}
     _seed: {fileID: 5384921150687346205, guid: 4f507bf4dfbb66442827b0b1a375ac58, type: 3}
     _crop: {fileID: 5075941163302393980, guid: 09d8d460f4e93f84096447d71f2196b0, type: 3}
     _growthTime: 7
   carrot:
+    _cropName: Carrot
+    _cropSprite: {fileID: 21300000, guid: 4278694037d2aea49b630d8ddecdd5f3, type: 3}
     _seed: {fileID: 3107758071200524746, guid: 2dae0501a4fc5ca44be1294232d2ddff, type: 3}
     _crop: {fileID: 6262568324941234760, guid: f31b2af192d07e9439b61ae222dbcedd, type: 3}
     _growthTime: 8
   calabaza:
+    _cropName: Calabaza
+    _cropSprite: {fileID: 21300000, guid: 5cac5a8a5cc06c140a5e59ec0a277323, type: 3}
     _seed: {fileID: 3297561527233028969, guid: 8b3e5fca5d906854d8b65b9286710eda, type: 3}
     _crop: {fileID: 3370813751459556884, guid: 46a548f57ed2926448c9c50800bfd4c0, type: 3}
     _growthTime: 10
   cake:
+    _cropName: Cake
+    _cropSprite: {fileID: 21300000, guid: 28132f8c37e90934ca5b84e310981980, type: 3}
     _seed: {fileID: 5084268477331724258, guid: fe19b734ff41b234f95114cd695044a2, type: 3}
     _crop: {fileID: 3830819107564869732, guid: 9863428b5024fee46a30ae6184fd10ea, type: 3}
     _growthTime: 10

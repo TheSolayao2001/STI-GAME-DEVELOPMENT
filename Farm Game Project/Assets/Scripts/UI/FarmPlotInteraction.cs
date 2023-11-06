@@ -8,7 +8,7 @@ public class FarmPlotInteraction : MonoBehaviour
 {
     [SerializeField] private Sprite _harvestSprite;
     private Button _button;
-    private Image _cropImage;
+    private Image _itemImage;
     private TextMeshProUGUI _interactionText;
 
     private PlayerMechanics _player;
@@ -17,7 +17,7 @@ public class FarmPlotInteraction : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
-        _cropImage = transform.GetChild(0).GetComponent<Image>();
+        _itemImage = transform.GetChild(0).GetComponent<Image>();
         _interactionText = GetComponentInChildren<TextMeshProUGUI>();
         
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMechanics>();
@@ -44,7 +44,7 @@ public class FarmPlotInteraction : MonoBehaviour
                 else
                 {
                     _button.interactable = true;
-                    _cropImage.sprite = _cropSelectionManager.GetSelectedFarmCrop.GetComponent<FarmCropSelection>().GetCropImage.sprite;
+                    _itemImage.sprite = _cropSelectionManager.GetSelectedFarmCrop.GetComponent<FarmCropSelection>().GetCropImage.sprite;
                 }
 
                 _interactionText.text = "Plant";
@@ -52,7 +52,15 @@ public class FarmPlotInteraction : MonoBehaviour
 
             case PlayerMechanics.State.Harvest:
                 _button.interactable = true;
+                _itemImage.sprite = _harvestSprite;
                 _interactionText.text = "Harvest";
+                break;
+
+            case PlayerMechanics.State.OnHand:
+                if (_player.pickupTruck) _button.interactable = true;
+                else _button.interactable = false;
+                _itemImage.sprite = _player.GetHarvestCropSprite;
+                _interactionText.text = "Load In";
                 break;
         }
     }
@@ -66,6 +74,11 @@ public class FarmPlotInteraction : MonoBehaviour
                 break;
 
             case PlayerMechanics.State.Harvest:
+                _player.HarvestCrop();
+                break;
+
+            case PlayerMechanics.State.OnHand:
+                _player.LoadCropOnTruck();
                 break;
         }
     }

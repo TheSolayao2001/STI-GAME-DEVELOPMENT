@@ -156,5 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2004dafc00b60524ea838a83a4e99186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _farmCrops: {fileID: 0}
+  _cropTable: {fileID: 0}
   _growthTime: 0
+  _wateredColor: {r: 0.5882353, g: 0.7058824, b: 1, a: 1}

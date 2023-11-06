@@ -19,10 +19,18 @@ public class PlayerMechanics : MonoBehaviour
     {
         None, 
         Plant, 
-        Harvest
+        Harvest, 
+        OnHand
     }
     private State _interactionState;
     public State GetInteractionState { get { return _interactionState; } }
+
+    private bool _isOnHand = false;
+    public PickupTruck pickupTruck;
+
+    private string _harvestCropName;
+    private Sprite _harvestCropSprite;
+    public Sprite GetHarvestCropSprite { get { return _harvestCropSprite; } }
 
     public delegate void Delegate_1();
     public Delegate_1 OnPlantSeeds;
@@ -53,11 +61,14 @@ public class PlayerMechanics : MonoBehaviour
 
     private void GeneratePisoPerSecond()
     {
-        _generationTime -= 1.5f * Time.deltaTime;
-        if (_generationTime <= 0f && _piso < _MAX_PISO_GENERATION)
+        if (_piso < _MAX_PISO_GENERATION)
         {
-            _piso += _pisoPerSecond;
-            _generationTime = _GENERATE_PISO_PER_SECOND;
+            _generationTime -= 1.5f * Time.deltaTime;
+            if (_generationTime <= 0f)
+            {
+                _piso += _pisoPerSecond;
+                _generationTime = _GENERATE_PISO_PER_SECOND;
+            }
         }
 
         _gameManager.GetTextMoney.text = _piso.ToString();
@@ -65,7 +76,7 @@ public class PlayerMechanics : MonoBehaviour
 
     private void InteractFarmPlot()
     {
-        if (farmPlot)
+        if (farmPlot && !_isOnHand)
         {
             switch (farmPlot.GetGrowthState)
             {
@@ -84,7 +95,8 @@ public class PlayerMechanics : MonoBehaviour
         }
         else
         {
-            _interactionState = State.None;
+            if (_isOnHand) _interactionState = State.OnHand;
+            else _interactionState = State.None;
         }
     }
 
@@ -94,6 +106,26 @@ public class PlayerMechanics : MonoBehaviour
         {
             _piso -= _selectedCropPrice;
             if (farmPlot) farmPlot.PlantSeeds();
+        }
+    }
+
+    public void HarvestCrop()
+    {
+        if (farmPlot)
+        {
+            farmPlot.HarvestCrop();
+            _harvestCropName = farmPlot.GetCropTable.selectedFarmCrop.GetCropName;
+            _harvestCropSprite = farmPlot.GetCropTable.selectedFarmCrop.GetCropSprite;
+        }
+        _isOnHand = true;
+    }
+
+    public void LoadCropOnTruck()
+    {
+        if (pickupTruck)
+        {
+            pickupTruck.LoadTruck(_harvestCropName, _harvestCropSprite);
+            _isOnHand = false;
         }
     }
 }

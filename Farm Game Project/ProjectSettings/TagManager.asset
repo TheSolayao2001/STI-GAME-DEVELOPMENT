@@ -45,3 +45,6 @@ TagManager:
   - name: Main
     uniqueID: 3362599009
     locked: 0
+  - name: Loaded Crop
+    uniqueID: 4164863903
+    locked: 0
