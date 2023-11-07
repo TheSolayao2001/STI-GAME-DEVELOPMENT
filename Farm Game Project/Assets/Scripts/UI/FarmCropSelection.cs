@@ -42,8 +42,7 @@ public class FarmCropSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player.GetInteractionState == PlayerMechanics.State.OnHand) _button.interactable = false;
-        else _button.interactable = true;
+        
     }
 
     public void SelectCrop()

@@ -26,7 +26,7 @@ public class CropSelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckCropName();
+        if (gameObject.activeInHierarchy) CheckCropName();
     }
 
     public void SetSelectedFarmCrop(GameObject farmCrop)

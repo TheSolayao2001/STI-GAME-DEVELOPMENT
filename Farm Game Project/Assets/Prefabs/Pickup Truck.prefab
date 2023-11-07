@@ -540,6 +540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _setArrivalTime: 10
+  _setDepartureTime: 30
+  _arrivalCount: 5
   _spriteRenderers:
   - {fileID: 1007404309458858731}
   - {fileID: 7302860018850853114}

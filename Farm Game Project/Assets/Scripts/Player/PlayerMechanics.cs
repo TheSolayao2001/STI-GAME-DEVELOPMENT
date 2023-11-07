@@ -6,6 +6,8 @@ public class PlayerMechanics : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
 
+    public int score = 0;
+
     [SerializeField] private int _piso = 0;
     private int _pisoPerSecond = 5;
     private const float _GENERATE_PISO_PER_SECOND = 1f;
@@ -57,6 +59,8 @@ public class PlayerMechanics : MonoBehaviour
     {
         GeneratePisoPerSecond();
         InteractFarmPlot();
+
+        _gameManager.GetTextScorePoints.text = score.ToString();
     }
 
     private void GeneratePisoPerSecond()
