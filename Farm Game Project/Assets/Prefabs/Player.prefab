@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e025bd24fd8ddc742afebbb53bc7e807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDesktopTest: 0
   _moveDirection: {x: 0, y: 0}
 --- !u!114 &3287914216061060645
 MonoBehaviour:
@@ -114,6 +113,9 @@ MonoBehaviour:
   _piso: 50
   pickupTruck: {fileID: 0}
   farmPlot: {fileID: 0}
+  _sfxPlantCrop: {fileID: 8300000, guid: 276121d2e3c651c4392eda8dc08ab035, type: 3}
+  _sfxHarvestCrop: {fileID: 8300000, guid: f4e342e5f8c137a4398f860a952e8278, type: 3}
+  _sfxLoadCropOnTruck: {fileID: 8300000, guid: 25b93b9200f1c824db13c5eeeba74b0a, type: 3}
 --- !u!1 &5256989328015192432
 GameObject:
   m_ObjectHideFlags: 0

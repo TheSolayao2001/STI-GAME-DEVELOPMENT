@@ -38,6 +38,13 @@ public class PlayerMechanics : MonoBehaviour
     public Delegate_1 OnPlantSeeds;
 
     public FarmPlot farmPlot;
+
+    [Space(10)]
+    [SerializeField] private AudioClip _sfxPlantCrop;
+    [SerializeField] private AudioClip _sfxHarvestCrop;
+    [SerializeField] private AudioClip _sfxLoadCropOnTruck;
+    private AudioSource _audioSFX;
+
     private CharacterController2D _controller2D;
     private GameManager _gameManager;
 
@@ -45,6 +52,8 @@ public class PlayerMechanics : MonoBehaviour
     {
         _controller2D = GetComponent<CharacterController2D>();
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        _audioSFX = GameObject.Find("Audio Source - SFX").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -110,6 +119,9 @@ public class PlayerMechanics : MonoBehaviour
         {
             _piso -= _selectedCropPrice;
             if (farmPlot) farmPlot.PlantSeeds();
+
+            _audioSFX.clip = _sfxPlantCrop;
+            _audioSFX.Play();
         }
     }
 
@@ -120,6 +132,9 @@ public class PlayerMechanics : MonoBehaviour
             farmPlot.HarvestCrop();
             _harvestCropName = farmPlot.GetCropTable.selectedFarmCrop.GetCropName;
             _harvestCropSprite = farmPlot.GetCropTable.selectedFarmCrop.GetCropSprite;
+
+            _audioSFX.clip = _sfxHarvestCrop;
+            _audioSFX.Play();
         }
         _isOnHand = true;
     }
@@ -130,6 +145,9 @@ public class PlayerMechanics : MonoBehaviour
         {
             pickupTruck.LoadTruck(_harvestCropName, _harvestCropSprite);
             _isOnHand = false;
+
+            _audioSFX.clip = _sfxLoadCropOnTruck;
+            _audioSFX.Play();
         }
     }
 }

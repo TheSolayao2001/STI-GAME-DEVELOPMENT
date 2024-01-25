@@ -11,12 +11,17 @@ public class PickupTruck : MonoBehaviour
     private float _departureTime;
 
     [SerializeField] private int _arrivalCount = 5;
+    private bool _isGameOver = false;
 
     [SerializeField] private List<SpriteRenderer> _spriteRenderers;
     private int _loadIndex = 0;
 
     public delegate void Delegate_1(string cropName);
     public Delegate_1 loadCropDel;
+
+    [Space(10)]
+    [SerializeField] private AudioClip _sfxTruckDepart;
+    private AudioSource _audioSFX;
 
     public enum State
     {
@@ -35,6 +40,8 @@ public class PickupTruck : MonoBehaviour
         _animator = GetComponent<Animator>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMechanics>();
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        _audioSFX = GameObject.Find("Audio Source - SFX").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -84,6 +91,10 @@ public class PickupTruck : MonoBehaviour
                     {
                         _gameManager.GetTextArrival.SetActive(false);
                         _animator.SetTrigger("Depart");
+
+                        _audioSFX.clip = _sfxTruckDepart;
+                        _audioSFX.Play();
+
                         _scheduleState = State.Depart;
                     }
                     break;
@@ -113,7 +124,11 @@ public class PickupTruck : MonoBehaviour
         }
         else
         {
-            Application.Quit();
+            if (!_isGameOver)
+            {
+                _gameManager.GameOver();
+                _isGameOver = true;
+            }
         }
     }
 

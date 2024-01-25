@@ -547,3 +547,4 @@ MonoBehaviour:
   - {fileID: 7302860018850853114}
   - {fileID: 5873608132602409082}
   - {fileID: 3846097405135589867}
+  _sfxTruckDepart: {fileID: 8300000, guid: a9cc5e05cd067f5458dae169586bf00a, type: 3}

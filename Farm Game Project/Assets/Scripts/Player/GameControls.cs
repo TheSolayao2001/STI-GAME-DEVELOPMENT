@@ -35,15 +35,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""MovementDesktopTest"",
-                    ""type"": ""Value"",
-                    ""id"": ""93fd730c-9778-498f-8d8c-2b0632226ba9"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -53,63 +44,63 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Touchscreen"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""1e038110-7362-499a-beaf-226ce1894255"",
+                    ""name"": ""WASD [Keyboard]"",
+                    ""id"": ""d99f25bf-b222-4f81-86dd-5272d0a7b857"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MovementDesktopTest"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""0bfd7ac7-9dd3-462a-9df9-7b6bb87d66fd"",
+                    ""id"": ""daad31b8-7b01-4f32-aea7-5e13388fbefb"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""MovementDesktopTest"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""9807660b-ad59-4f27-887e-2a9c66e395d7"",
+                    ""id"": ""f625a636-ad8c-44ea-99d4-83cf2ec11335"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""MovementDesktopTest"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""33d90681-6d9f-4c30-985f-7f9b3628540e"",
+                    ""id"": ""36528e4d-981b-47ac-9c59-229939e395fe"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""MovementDesktopTest"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""18421118-3c4a-44b2-9936-947ebead3e61"",
+                    ""id"": ""df37936f-9d98-43e0-acea-08cfe8548bcf"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""MovementDesktopTest"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -118,11 +109,11 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Gamepad"",
-            ""bindingGroup"": ""Gamepad"",
+            ""name"": ""Touchscreen"",
+            ""bindingGroup"": ""Touchscreen"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Gamepad>"",
+                    ""devicePath"": ""<Touchscreen>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -144,7 +135,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_MovementDesktopTest = m_Player.FindAction("MovementDesktopTest", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,13 +195,11 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_MovementDesktopTest;
     public struct PlayerActions
     {
         private @GameControls m_Wrapper;
         public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @MovementDesktopTest => m_Wrapper.m_Player_MovementDesktopTest;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -224,9 +212,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @MovementDesktopTest.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementDesktopTest;
-                @MovementDesktopTest.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementDesktopTest;
-                @MovementDesktopTest.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementDesktopTest;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -234,20 +219,17 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @MovementDesktopTest.started += instance.OnMovementDesktopTest;
-                @MovementDesktopTest.performed += instance.OnMovementDesktopTest;
-                @MovementDesktopTest.canceled += instance.OnMovementDesktopTest;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-    private int m_GamepadSchemeIndex = -1;
-    public InputControlScheme GamepadScheme
+    private int m_TouchscreenSchemeIndex = -1;
+    public InputControlScheme TouchscreenScheme
     {
         get
         {
-            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
-            return asset.controlSchemes[m_GamepadSchemeIndex];
+            if (m_TouchscreenSchemeIndex == -1) m_TouchscreenSchemeIndex = asset.FindControlSchemeIndex("Touchscreen");
+            return asset.controlSchemes[m_TouchscreenSchemeIndex];
         }
     }
     private int m_KeyboardSchemeIndex = -1;
@@ -262,6 +244,5 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnMovementDesktopTest(InputAction.CallbackContext context);
     }
 }

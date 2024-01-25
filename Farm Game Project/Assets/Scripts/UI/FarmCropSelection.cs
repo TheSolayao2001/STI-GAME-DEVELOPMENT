@@ -17,6 +17,9 @@ public class FarmCropSelection : MonoBehaviour
     public Image GetCropImage { get { return _cropImage; } }
     private TextMeshProUGUI _TMPCost;
 
+    [SerializeField] private AudioClip _sfxSelectCrop;
+    private AudioSource _audioSFX;
+
     private CropSelectionManager _cropSelectionManager;
     private RectTransform _rectTransform;
     private PlayerMechanics _player;
@@ -29,6 +32,8 @@ public class FarmCropSelection : MonoBehaviour
         _cropSelectionManager = GetComponentInParent<CropSelectionManager>();
         _rectTransform = GetComponent<RectTransform>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMechanics>();
+
+        _audioSFX = GameObject.Find("Audio Source - SFX").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -55,6 +60,9 @@ public class FarmCropSelection : MonoBehaviour
             _rectTransform.sizeDelta = _selectionSize;
             _player.SetSelectedCropPrice = _farmCropPrice;
             _isSelected = true;
+
+            _audioSFX.clip = _sfxSelectCrop;
+            _audioSFX.Play();
         }
     }
 

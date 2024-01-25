@@ -82,16 +82,20 @@ public class HarvestOrders : MonoBehaviour
 
     private void CheckOrders(string loadedCropName)
     {
-        while (_checkOrderIndex < _orderNames.Count)
+        if (_orderNames.Contains(loadedCropName))
         {
-            if (_orderNames[_checkOrderIndex].Equals(loadedCropName))
+            while (_checkOrderIndex < _orderNames.Count)
             {
-                _orderNames.RemoveAt(_checkOrderIndex);
-                _player.score += 10;
-                _checkOrderIndex = 0;
-                return;
+                if (_orderNames[_checkOrderIndex].Equals(loadedCropName))
+                {
+                    _orderNames.RemoveAt(_checkOrderIndex);
+                    _player.score += 10;
+                    _checkOrderIndex = 0;
+                    return;
+                }
+                else _checkOrderIndex++;
             }
-            else _checkOrderIndex++;
         }
+        else return;
     }
 }

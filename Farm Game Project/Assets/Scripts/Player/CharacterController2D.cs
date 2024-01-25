@@ -7,8 +7,6 @@ public class CharacterController2D : MonoBehaviour
 {
     public float SetMoveSpeed { private get; set; }
 
-    [SerializeField] private bool _isDesktopTest = false;
-
     [SerializeField] private Vector2 _moveDirection;
     private GameControls _controls;
     private Rigidbody2D _rb2D;
@@ -38,7 +36,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void ProcessInput()
     {
-        if (!_isDesktopTest) _moveDirection = _controls.Player.Movement.ReadValue<Vector2>();
-        else _moveDirection = _controls.Player.MovementDesktopTest.ReadValue<Vector2>();
+        _moveDirection = _controls.Player.Movement.ReadValue<Vector2>();
     }
 }
